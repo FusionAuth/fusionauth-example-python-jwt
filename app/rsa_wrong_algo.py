@@ -3,7 +3,7 @@ import python_jwt as jwt
 import jwcrypto.jwk as jwk
 
 def run(): 
-  key = jwk.JWK.generate(kty='oct', size=256)
+  key = jwk.JWK.generate(kty='RSA', size=2048)
 
   # User API
   
@@ -20,12 +20,6 @@ def run():
   print(encoded)
   
   # Todo  API
-  header, claims = jwt.verify_jwt(encoded, key, ["HS256"])
-  if claims["iss"] != "fusionauth.io":
-    print("Error! unexpected issuer: "+claims["iss"] )
-    return
-  if claims["aud"] != "138d4793-70de-4183-9707-48ed8ecd19d9":
-    print("Error! unexpected audience: "+claims["aud"] )
-    return
-
-  print(claims)
+  decoded = jwt.verify_jwt(encoded, key, ["HS256"])
+  
+  print(decoded)

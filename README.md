@@ -18,4 +18,5 @@ This is a sample application showing JWT manipulations with python.
 * `python3 run.py hmac`
 * `python3 run.py hmac_verify_claims`
 * `python3 run.py rsa`
+* `python3 run.py rsa_wrong_algo`
 

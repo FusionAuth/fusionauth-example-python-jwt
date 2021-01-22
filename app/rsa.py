@@ -3,7 +3,7 @@ import python_jwt as jwt
 import jwcrypto.jwk as jwk
 
 def run(): 
-  key = jwk.JWK.generate(kty='oct', size=256)
+  key = jwk.JWK.generate(kty='RSA', size=2048)
 
   # User API
   
@@ -15,11 +15,11 @@ def run():
               "roles": ["RETRIEVE_TODOS"]
   }
   
-  encoded = jwt.generate_jwt(payload, key, "HS256", datetime.timedelta(minutes=5))
+  encoded = jwt.generate_jwt(payload, key, "RS256", datetime.timedelta(minutes=5))
   
   print(encoded)
   
   # Todo  API
-  decoded = jwt.verify_jwt(encoded, key, ["HS256"])
+  decoded = jwt.verify_jwt(encoded, key, ["RS256"])
   
   print(decoded)
