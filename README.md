@@ -4,7 +4,6 @@ This is a sample application showing JWT manipulations with python.
 
 ## Prerequisites
 
-* FusionAuth
 * python3
 * pip3
 
