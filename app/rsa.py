@@ -20,6 +20,13 @@ def run():
   print(encoded)
   
   # Todo  API
-  decoded = jwt.verify_jwt(encoded, key, ["RS256"])
+  header, claims = jwt.verify_jwt(encoded, key, ["RS256"])
+  if claims["iss"] != "fusionauth.io":
+    print("Error! unexpected issuer: "+claims["iss"] )
+    return
+  if claims["aud"] != "138d4793-70de-4183-9707-48ed8ecd19d9":
+    print("Error! unexpected audience: "+claims["aud"] )
+    return
+
+  print(claims)
   
-  print(decoded)
